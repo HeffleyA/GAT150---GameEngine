@@ -1,20 +1,38 @@
 #pragma once
-#include "Renderer.h"
-#include "Vector2.h"
-#include "Input.h"
-#include "Audio.h"
-#include "Particle.h"
-#include "Random.h"
-#include "ETime.h"
-#include "MathUtils.h"
-#include "Model.h"
-#include "Transform.h"
-#include "ParticleSystem.h"
-#include "Actor.h"
+// ** core **
+#include "../Core/ETime.h"
+#include "../Core/EAssert.h"
+#include "../Core/EFile.h"
 
+// ** systems **
+// renderer
+#include "../Renderer/Renderer.h"
+#include "../Renderer/Particle.h"
+#include "../Renderer/ParticleSystem.h"
+#include "../Renderer/Text.h"
+#include "../Renderer/Font.h"
+#include "../Renderer/Model.h"
+#include "../Renderer/Color.h"
+// input
+#include "../Input/Input.h"
+// audio
+#include "../Audio/Audio.h"
+
+// ** math **
+#include "../Math/Vector2.h"
+#include "../Math/Random.h"
+#include "../Math/MathUtils.h"
+#include "../Math/Transform.h"
+
+// ** framework **
+#include "../Framework/Actor.h"
+#include "../Framework/Game.h"
+#include "../Framework/Scene.h"
+
+#include <fmod.hpp>
 #include <SDL.h>
-#include <iostream>
 #include <memory>
+#include <cassert>
 
 #define RENDERER g_engine.GetRenderer()
 
@@ -49,4 +67,3 @@ private:
 	std::unique_ptr<ParticleSystem> m_particleSystem;
 };
 
-extern Engine g_engine;
