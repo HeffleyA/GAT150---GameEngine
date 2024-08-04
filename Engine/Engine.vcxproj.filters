@@ -75,6 +75,9 @@
     <ClCompile Include="Source\Framework\Engine.cpp">
       <Filter>Source\Framework</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Renderer\Texture.cpp">
+      <Filter>Source\Renderer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Core\EFile.h">
@@ -136,6 +139,9 @@
     </ClInclude>
     <ClInclude Include="Source\Framework\Engine.h">
       <Filter>Source\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Renderer\Texture.h">
+      <Filter>Source\Renderer</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

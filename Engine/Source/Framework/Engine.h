@@ -13,6 +13,7 @@
 #include "../Renderer/Font.h"
 #include "../Renderer/Model.h"
 #include "../Renderer/Color.h"
+#include "../Renderer/Texture.h"
 // input
 #include "../Input/Input.h"
 // audio
