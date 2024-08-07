@@ -1,0 +1,9 @@
+{
+   "name":"Adrian",
+   "age":20,
+   "isAwake":true,
+   "position":[
+      5,
+      10
+   ]
+}

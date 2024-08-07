@@ -13,6 +13,28 @@ int main(int argc, char* argv[])
 	File::SetFilePath("Assets");
 	std::cout << File::GetFilePath() << std::endl;
 
+	std::string s;
+	File::ReadFile("text.txt", s);
+	std::cout << s << std::endl;
+
+	rapidjson::Document document;
+	Json::Load("text.txt", document);
+	
+	std::string name;
+	int age;
+	bool isAwake;
+
+	READ_DATA(document, name);
+	READ_DATA(document, age);
+	READ_DATA(document, isAwake);
+
+	std::cout << name << std::endl;
+
+	std::cout << age << std::endl;
+
+	std::cout << isAwake << std::endl;
+
+
 	{
 		// create texture, using shared_ptr so texture can be shared
 		res_t<Texture> texture = ResourceManager::Instance().Get<Texture>("Orange.png", engine->GetRenderer());
