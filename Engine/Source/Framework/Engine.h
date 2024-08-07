@@ -30,6 +30,13 @@
 #include "../Framework/Game.h"
 #include "../Framework/Scene.h"
 
+// ** resources **
+#include "../Resources/Resource.h"
+#include "../Resources/ResourceManager.h"
+
+// ** components **
+#include "Components/TextureComponent.h"
+
 #include <fmod.hpp>
 #include <SDL.h>
 #include <memory>

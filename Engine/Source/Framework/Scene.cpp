@@ -31,13 +31,13 @@ void Scene::Update(float dt)
 
 			Vector2 direction = actor1->GetTransform().position - actor2->GetTransform().position;
 			float distance = direction.Length();
-			float radius = actor1->GetRadius() + actor2->GetRadius();
+			//float radius = actor1->GetRadius() + actor2->GetRadius();
 
-			if (distance <= radius)
+			/*if (distance <= radius)
 			{
 				actor1->OnCollision(actor2.get());
 				actor2->OnCollision(actor1.get());
-			}
+			}*/
 		}
 	}
 }
