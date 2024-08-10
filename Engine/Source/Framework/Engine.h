@@ -4,6 +4,7 @@
 #include "../Core/EAssert.h"
 #include "../Core/EFile.h"
 #include "Core/Json.h"
+#include "Core/Factory.h"
 
 // ** systems **
 // renderer

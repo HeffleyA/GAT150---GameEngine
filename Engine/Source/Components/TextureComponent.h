@@ -5,6 +5,8 @@
 class TextureComponent : public RenderComponent
 {
 public:
+	CLASS_DECLARATION(TextureComponent)
+
 	// Inherited via RenderComponent
 	void Initialize() override;
 

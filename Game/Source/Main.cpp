@@ -6,6 +6,10 @@
 
 int main(int argc, char* argv[])
 {
+	Factory::Instance().Register<Actor>(Actor::GetTypeName());
+	Factory::Instance().Register<TextureComponent>(TextureComponent::GetTypeName());
+	//auto a = Factory::Instance().Create("Actor");
+
 	std::unique_ptr<Engine> engine = std::make_unique<Engine>();
 
 	engine->Initialize();
@@ -22,17 +26,21 @@ int main(int argc, char* argv[])
 	
 	std::string name;
 	int age;
+	float speed;
 	bool isAwake;
+	Vector2 position;
+	Color color;
 
 	READ_DATA(document, name);
 	READ_DATA(document, age);
+	READ_DATA(document, speed);
 	READ_DATA(document, isAwake);
+	READ_DATA(document, position);
+	READ_DATA(document, color);
 
-	std::cout << name << std::endl;
-
-	std::cout << age << std::endl;
-
-	std::cout << isAwake << std::endl;
+	std::cout << name << " " << age << " " << speed << " " << isAwake << std::endl;
+	std::cout << position.x << " " << position.y << std::endl;
+	std::cout << color.r << " " << color.g << " " << color.b << " " << color.a << std::endl;
 
 
 	{
@@ -44,8 +52,9 @@ int main(int argc, char* argv[])
 		text->Create(engine->GetRenderer(), "Hi!", { 1, 1, 0, 1 });
 
 		Transform t{ { 30, 30 } };
-		std::unique_ptr<Actor> actor = std::make_unique<Actor>(t);
-		std::unique_ptr<TextureComponent> component = std::make_unique<TextureComponent>();
+		auto actor = Factory::Instance().Create<Actor>(Actor::GetTypeName());
+		actor->setTransform(t);
+		auto component = Factory::Instance().Create<TextureComponent>(TextureComponent::GetTypeName());
 		component->texture = texture;
 		actor->AddComponent(std::move(component));
 
@@ -60,8 +69,8 @@ int main(int argc, char* argv[])
 			//engine->GetPS().Draw(engine->GetRenderer());
 
 			//engine->GetRenderer().DrawTexture(texture.get(), 30, 30);
-			text->Draw(engine->GetRenderer(), 200, 200);
 			actor->Draw(engine->GetRenderer());
+			text->Draw(engine->GetRenderer(), 200, 200);
 
 			engine->GetRenderer().EndFrame();
 		}
