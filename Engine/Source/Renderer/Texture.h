@@ -1,12 +1,15 @@
 #pragma once
-#include "../Resources/Resource.h"
-#include "../Math/Vector2.h"
+#include "Resources/Resource.h"
+#include "Math/Vector2.h"
 #include <string>
+
+struct SDL_Texture;
 
 class Texture : public Resource
 {
 public:
 	Texture() = default;
+	Texture(SDL_Texture* texture) : m_texture{ texture } {}
 	~Texture();
 
 	bool Load(const std::string& filename, class Renderer& renderer);

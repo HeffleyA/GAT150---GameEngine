@@ -1,10 +1,11 @@
 #pragma once
 // ** core **
-#include "../Core/ETime.h"
-#include "../Core/EAssert.h"
-#include "../Core/EFile.h"
+#include "Core/ETime.h"
+#include "Core/EAssert.h"
+#include "Core/EFile.h"
 #include "Core/Json.h"
 #include "Core/Factory.h"
+#include "Core/EString.h"
 
 // ** systems **
 // renderer
@@ -38,6 +39,8 @@
 
 // ** components **
 #include "Components/TextureComponent.h"
+#include "Components/EnginePhysicsComponent.h"
+#include "Components/TextComponent.h"
 
 #include <fmod.hpp>
 #include <SDL.h>

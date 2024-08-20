@@ -1,11 +1,12 @@
 #pragma once
 #include "Object.h"
-#include "../Math/Transform.h"
+#include "Math/Transform.h"
 #include "Components/Component.h"
 
 #include <string>
 #include <memory>
 #include <vector>
+#include <functional>
 
 class Renderer;
 class Scene;
@@ -14,7 +15,7 @@ class Actor : public Object
 {
 public:
 	Actor() = default;
-	Actor(const Transform& transform) : m_transform{ transform } {}
+	Actor(const Transform& transform) : transform{ transform } {}
 
 	CLASS_DECLARATION(Actor)
 
@@ -24,32 +25,64 @@ public:
 	virtual void Update(float dt);
 	virtual void Draw(Renderer& renderer);
 
+	std::function<void(Actor*)> OnCollisionEnter;
+
 	void AddComponent(std::unique_ptr<Component> component);
+
+	template<typename T>
+	T* GetComponent();
+	template<typename T>
+	std::vector<T*> GetComponents();
 	
-	void SetDamping(float damping) { m_damping = damping; }
-	void SetLifespan(float lifespan) { m_lifespan = lifespan; }
+	//void SetDamping(float damping) { m_damping = damping; }
 
-	const Transform& GetTransform() { return m_transform; }
-	void setTransform(const Transform& transform) { m_transform = transform; }
+	//const Transform& GetTransform() { return transform; }
+	//void setTransform(const Transform& transform) { transform = transform; }
 
-	void SetTag(const std::string tag) { m_tag = tag; }
-	const std::string& GetTag() { return m_tag; }
+	//void SetTag(const std::string tag) { tag = tag; }
+	//const std::string& GetTag() { return tag; }
 
-	virtual void OnCollision(Actor* actor) {}
+	//virtual void OnCollision(Actor* actor) {}
 
 	friend class Scene;
 
+public:
+	std::string tag;
+	float lifespan = 0;
+	bool destroyed = false;
+	Transform transform;
+	Scene* scene{ nullptr };
+
 protected:
-	std::string m_tag;
 
-	bool m_destroyed = false;
-	float m_lifespan = 0;
+	//Vector2 m_velocity{ 0, 0 };
+	//float m_damping = 0;
 
-	Transform m_transform;
-	Vector2 m_velocity{ 0, 0 };
-	float m_damping = 0;
-
-	Scene* m_scene{ nullptr };
-
-	std::vector<std::unique_ptr<Component>> m_components;
+	std::vector<std::unique_ptr<Component>> components;
 };
+
+template<typename T>
+inline T* Actor::GetComponent()
+{
+	for (auto& component : components)
+	{
+		T* result = dynamic_cast<T*>(component.get());
+		if (result) return result;
+	}
+
+	return nullptr;
+}
+
+template<typename T>
+inline std::vector<T*> Actor::GetComponents()
+{
+	std::vector<T*> results;
+
+	for (auto& component : components)
+	{
+		T* result = dynamic_cast<T*>(component.get());
+		if (result) results.push_back(result);
+	}
+
+	return results;
+}

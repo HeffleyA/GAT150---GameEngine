@@ -1,6 +1,6 @@
 #include "Texture.h"
 #include "Renderer.h"
-#include "../Core/EAssert.h"
+#include "Core/EAssert.h"
 #include <iostream>
 
 Texture::~Texture()
@@ -48,7 +48,7 @@ bool Texture::Create(std::string name, ...)
 {
     va_list args;
     va_start(args, name);
-    Renderer renderer = va_arg(args, Renderer);
+    Renderer& renderer = va_arg(args, Renderer);
     va_end(args);
 
     return Load(name, renderer);
