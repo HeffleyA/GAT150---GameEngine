@@ -16,8 +16,10 @@ class Actor : public Object
 public:
 	Actor() = default;
 	Actor(const Transform& transform) : transform{ transform } {}
+	Actor(const Actor& other);
 
 	CLASS_DECLARATION(Actor)
+	CLASS_PROTOTYPE(Actor)
 
 	// Inherited via Object
 	void Initialize() override;
@@ -26,6 +28,7 @@ public:
 	virtual void Draw(Renderer& renderer);
 
 	std::function<void(Actor*)> OnCollisionEnter;
+	std::function<void(Actor*)> OnCollisionExit;
 
 	void AddComponent(std::unique_ptr<Component> component);
 

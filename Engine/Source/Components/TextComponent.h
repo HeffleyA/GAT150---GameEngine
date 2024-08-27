@@ -4,15 +4,16 @@
 class TextComponent : public RenderComponent
 {
 public:
-	CLASS_DECLARATION(TextComponent);
+	TextComponent() = default;
+	TextComponent(const TextComponent& other);
+
+	CLASS_DECLARATION(TextComponent)
+	CLASS_PROTOTYPE(TextComponent)
 
 	// Inherited via RenderComponent
 	void Initialize() override;
-
 	void Update(float dt) override;
-
 	void Draw(Renderer& renderer) override;
-
 	void SetText(const std::string& text);
 
 public:

@@ -5,6 +5,7 @@ class PlayerComponent : public Component
 {
 public:
 	CLASS_DECLARATION(PlayerComponent)
+	CLASS_PROTOTYPE(PlayerComponent)
 
 
 	// Inherited via Component

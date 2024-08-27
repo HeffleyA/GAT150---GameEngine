@@ -23,10 +23,11 @@
 #include "../Audio/Audio.h"
 
 // ** math **
-#include "../Math/Vector2.h"
-#include "../Math/Random.h"
-#include "../Math/MathUtils.h"
-#include "../Math/Transform.h"
+#include "Math/Vector2.h"
+#include "Math/Random.h"
+#include "Math/MathUtils.h"
+#include "Math/Transform.h"
+#include "Math/Rect.h"
 
 // ** framework **
 #include "../Framework/Actor.h"
@@ -37,10 +38,16 @@
 #include "../Resources/Resource.h"
 #include "../Resources/ResourceManager.h"
 
+// ** event system **
+#include "Event/EventSystem.h"
+
 // ** components **
 #include "Components/TextureComponent.h"
 #include "Components/EnginePhysicsComponent.h"
 #include "Components/TextComponent.h"
+
+// ** physics **
+#include "Physics/Physics.h"
 
 #include <fmod.hpp>
 #include <SDL.h>
@@ -66,6 +73,8 @@ public:
 	Time& GetTime() { return *m_time; }
 	ParticleSystem& GetPS() { return *m_particleSystem; }
 
+	Physics& GetPhysics() { return *m_physics; }
+
 	bool IsQuit() { return quit; }
 
 private:
@@ -78,5 +87,7 @@ private:
 	std::unique_ptr<Audio> m_audio{ nullptr };
 
 	std::unique_ptr<ParticleSystem> m_particleSystem;
+
+	std::unique_ptr<Physics> m_physics;
 };
 
