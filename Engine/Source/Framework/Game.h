@@ -19,12 +19,13 @@ public:
 	int GetScore() const { return m_score; }
 	void AddPoints(int points) { m_score += points; }
 
-	int GetLives() const { return m_lives; }
-	void SetLives(int lives) { m_lives = lives; }
+	int GetHealth() const { return m_health; }
+	void SetHealth(int health) { m_health = health; }
 
 protected:
 	int m_score = 0;
-	int m_lives = 0;
+	int m_health = 1000;
+	int m_money = 500;
 
 	Engine* m_engine{ nullptr };
 };

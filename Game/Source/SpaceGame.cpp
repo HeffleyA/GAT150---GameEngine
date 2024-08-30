@@ -1,5 +1,6 @@
 #include "SpaceGame.h"
 #include "../Source/Framework/Engine.h"
+#include "Components/CharacterComponent.h"
 
 #include <memory>
 #include <functional>
@@ -7,7 +8,9 @@
 bool SpaceGame::Initialize()
 {
 	m_scene = std::make_unique<Scene>(m_engine);
-	std::string sceneNames[] = { "Scenes/tilemap.json", "Scenes/scene.json" };
+
+	std::string sceneNames[] = { "Scenes/game.json", "Scenes/tilemap.json"};
+
 	for (auto sceneName : sceneNames)
 	{
 		rapidjson::Document document;
@@ -30,6 +33,66 @@ void SpaceGame::Shutdown()
 
 void SpaceGame::Update(float dt)
 {
+	timer -= dt;
+	mushTimer -= dt;
+	gobTimer -= dt;
+	skeleTimer -= dt;
+
+	if (timer <= 0)
+	{
+		auto enemy = Factory::Instance().Create<Actor>("Eye");
+		enemy->transform.position = { random(100, 500), random(100, 500)};
+
+		m_scene->AddActor(std::move(enemy), true);
+
+		timer = randomf(3, 10);
+	}
+
+	if (mushTimer <= 0)
+	{
+		mushSpawn -= dt;
+
+		if (mushSpawn <= 0)
+		{
+			auto enemy = Factory::Instance().Create<Actor>("Mushroom");
+			enemy->transform.position = { random(100, 500), random(100, 500) };
+
+			m_scene->AddActor(std::move(enemy), true);
+
+			mushSpawn = randomf(5, 10);
+		}
+	}
+
+	if (gobTimer <= 0)
+	{
+		gobSpawn -= dt;
+
+		if (gobSpawn <= 0)
+		{
+			auto enemy = Factory::Instance().Create<Actor>("Goblin");
+			enemy->transform.position = { random(100, 500), random(100, 500) };
+
+			m_scene->AddActor(std::move(enemy), true);
+
+			gobSpawn = randomf(5, 10);
+		}
+	}
+
+	if (skeleTimer <= 0)
+	{
+		skeleSpawn -= dt;
+
+		if (skeleSpawn <= 0)
+		{
+			auto enemy = Factory::Instance().Create<Actor>("Skeleton");
+			enemy->transform.position = { random(100, 500), random(100, 500) };
+
+			m_scene->AddActor(std::move(enemy), true);
+
+			skeleSpawn = randomf(5, 10);
+		}
+	}
+
 	m_scene->Update(dt);
 }
 

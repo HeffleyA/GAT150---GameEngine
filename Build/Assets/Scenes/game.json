@@ -5,26 +5,55 @@
       "transform": {
         "position": [ 0, 0 ],
         "rotation": 0,
-        "scale": 3
+        "scale": 1.5
       },
       "components": [
         {
           "type": "TextureComponent",
-          "textureName": "Textures/Green_Nebula.png"
+          "textureName": "Textures/CaveBackground.jpg"
         }
       ]
     },
     {
       "name": "player",
       "transform": {
-        "position": [ 60, 60 ],
-        "rotation": 90,
+        "position": [ 250, 100 ],
+        "rotation": 0,
         "scale": 1
       },
       "components": [
         {
-          "type": "TextureComponent",
-          "textureName": "Textures/warrior.png"
+          "type": "TextureAnimationComponent",
+          "animationName": "idle",
+          "animations": [
+            {
+              "name": "idle",
+              "fps": 12,
+              "numColumns": 10,
+              "numRows": 1,
+              "startFrame": 1,
+              "endFrame": 10,
+              "textureName": "Textures/_Idle.png"
+            },
+            {
+              "name": "run",
+              "fps": 12,
+              "numColumns": 10,
+              "numRows": 1,
+              "startFrame": 1,
+              "endFrame": 10,
+              "textureName": "Textures/_Run.png"
+            },
+            {
+              "name": "attack",
+              "fps": 12,
+              "numColumns": 4,
+              "numRows": 1,
+              "startFrame": 1,
+              "endFrame": 4,
+              "textureName": "Textures/_Attack.png"
+            }
+          ]
         },
         {
           "type": "Box2DPhysicsComponent",
@@ -33,11 +62,184 @@
           "angularDamping": 0.85,
           "friction": 0.2,
           "constrainAngle": true,
-          "size": [32, 96]
+          "restitution": 0,
+          "shape": "Capsule",
+          "size": [ 120, 80 ],
+          "scale": [ 0.5, 0.5 ]
         },
         {
           "type": "CharacterComponent",
-          "speed": 100
+          "speed": 100,
+          "isAttacking": false,
+          "isHit": false
+        }
+      ]
+    },
+    {
+      "name": "Eye",
+      "prototype": true,
+      "transform": {
+        "position": [ 500, 100 ],
+        "rotation": 0,
+        "scale": 1
+      },
+      "components": [
+        {
+          "type": "TextureAnimationComponent",
+          "animationName": "idle",
+          "animations": [
+            {
+              "name": "idle",
+              "fps": 12,
+              "numColumns": 8,
+              "numRows": 1,
+              "startFrame": 1,
+              "endFrame": 8,
+              "textureName": "Textures/Eye_Flight.png"
+            }
+          ]
+        },
+        {
+          "type": "Box2DPhysicsComponent",
+          "damping": 0.5,
+          "gravityScale": 1,
+          "angularDamping": 0.85,
+          "friction": 0.2,
+          "constrainAngle": true,
+          "restitution": 0,
+          "shape": "Capsule",
+          "size": [ 50, 50 ],
+          "scale": [ 1, 1 ]
+        },
+        {
+          "type": "EnemyComponent",
+          "speed": 50
+        }
+      ]
+    },
+    {
+      "name": "Mushroom",
+      "prototype": true,
+      "transform": {
+        "position": [ 500, 100 ],
+        "rotation": 0,
+        "scale": 1
+      },
+      "components": [
+        {
+          "type": "TextureAnimationComponent",
+          "animationName": "run",
+          "animations": [
+            {
+              "name": "run",
+              "fps": 12,
+              "numColumns": 8,
+              "numRows": 1,
+              "startFrame": 1,
+              "endFrame": 8,
+              "textureName": "Textures/Mush_Run.png"
+            }
+          ]
+        },
+        {
+          "type": "Box2DPhysicsComponent",
+          "damping": 0.5,
+          "gravityScale": 1,
+          "angularDamping": 0.85,
+          "friction": 0.2,
+          "constrainAngle": true,
+          "restitution": 0,
+          "shape": "Capsule",
+          "size": [ 50, 50 ],
+          "scale": [ 1, 1 ]
+        },
+        {
+          "type": "EnemyComponent",
+          "speed": 50
+        }
+      ]
+    },
+    {
+      "name": "Goblin",
+      "prototype": true,
+      "transform": {
+        "position": [ 500, 100 ],
+        "rotation": 0,
+        "scale": 1
+      },
+      "components": [
+        {
+          "type": "TextureAnimationComponent",
+          "animationName": "run",
+          "animations": [
+            {
+              "name": "run",
+              "fps": 12,
+              "numColumns": 8,
+              "numRows": 1,
+              "startFrame": 1,
+              "endFrame": 8,
+              "textureName": "Textures/Gob_Run.png"
+            }
+          ]
+        },
+        {
+          "type": "Box2DPhysicsComponent",
+          "damping": 0.5,
+          "gravityScale": 1,
+          "angularDamping": 0.85,
+          "friction": 0.2,
+          "constrainAngle": true,
+          "restitution": 0,
+          "shape": "Capsule",
+          "size": [ 50, 50 ],
+          "scale": [ 1, 1 ]
+        },
+        {
+          "type": "EnemyComponent",
+          "speed": 50
+        }
+      ]
+    },
+    {
+      "name": "Skeleton",
+      "prototype": true,
+      "transform": {
+        "position": [ 500, 100 ],
+        "rotation": 0,
+        "scale": 1
+      },
+      "components": [
+        {
+          "type": "TextureAnimationComponent",
+          "animationName": "run",
+          "animations": [
+            {
+              "name": "run",
+              "fps": 12,
+              "numColumns": 4,
+              "numRows": 1,
+              "startFrame": 1,
+              "endFrame": 4,
+              "textureName": "Textures/Skele_Walk.png"
+            }
+          ]
+        },
+        {
+          "type": "Box2DPhysicsComponent",
+          "damping": 0.5,
+          "gravityScale": 1,
+          "angularDamping": 0.85,
+          "friction": 0.2,
+          "constrainAngle": true,
+          "restitution": 0,
+          "shape": "Capsule",
+          "size": [ 50, 50 ],
+          "scale": [ 1, 1 ]
+        },
+        {
+          "type": "EnemyComponent",
+          "speed": 50
         }
       ]
     }
